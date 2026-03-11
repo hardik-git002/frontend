@@ -8,7 +8,7 @@ function Posts() {
   const [category, setCategory] = useState("");
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const [limit] = useState(5);
+  const [limit] = useState(2);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
