@@ -1,15 +1,15 @@
 import axios from "axios";
 
 export const authAPI = axios.create({
-  baseURL: "http://127.0.0.1:8001",
+  baseURL: "https://user-auth-api-2ykc.onrender.com",
 });
 
 export const inventoryAPI = axios.create({
-  baseURL: "http://127.0.0.1:8002",
+  baseURL: "https://inventory-api-f67z.onrender.com",
 });
 
 export const postsAPI = axios.create({
-  baseURL: "http://127.0.0.1:8003",
+  baseURL: "https://posts-api-lyqv.onrender.com",
 });
 
 // Automatically attach JWT token to every request
