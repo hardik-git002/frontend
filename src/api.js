@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const authAPI = axios.create({
-  baseURL: "https://user-auth-api-2ykc.onrender.com",
+  baseURL: "https://user-auth-api-1.onrender.com",
 });
 
 export const inventoryAPI = axios.create({
