@@ -8,6 +8,7 @@ function Posts() {
   const [category, setCategory] = useState("");
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const [limit] = useState(5);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -18,12 +19,12 @@ function Posts() {
   const fetchPosts = async () => {
     try {
       const response = await postsAPI.get("/posts/", {
-        params: {
-          page,
-          limit: 2,
-          search: search || undefined,
-        },
-      });
+    params: {
+        page,
+        limit,
+        search: search || undefined,
+    },
+    });
       setPosts(response.data);
     } catch (err) {
       setError("Failed to fetch posts.");
@@ -130,23 +131,31 @@ function Posts() {
       </div>
 
       {/* Pagination */}
-      <div style={styles.pagination}>
+        <div style={styles.pagination}>
         <button
-          style={styles.pageButton}
-          onClick={() => setPage((p) => Math.max(1, p - 1))}
-          disabled={page === 1}
+            style={{
+            ...styles.pageButton,
+            opacity: page === 1 ? 0.4 : 1,
+            cursor: page === 1 ? "not-allowed" : "pointer",
+            }}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={page === 1}
         >
-          ← Previous
+            ← Previous
         </button>
         <span style={styles.pageNumber}>Page {page}</span>
         <button
-          style={styles.pageButton}
-          onClick={() => setPage((p) => p + 1)}
-          disabled={posts.length < 2}
+            style={{
+            ...styles.pageButton,
+            opacity: posts.length < limit ? 0.4 : 1,
+            cursor: posts.length < limit ? "not-allowed" : "pointer",
+            }}
+            onClick={() => setPage((p) => p + 1)}
+            disabled={posts.length < limit}
         >
-          Next →
+            Next →
         </button>
-      </div>
+        </div>
     </div>
   );
 }
